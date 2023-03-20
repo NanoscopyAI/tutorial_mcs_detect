@@ -95,6 +95,7 @@ At the end you'll see something like
  Info: 2023-02-27 06:14:21 curator.jl:180: Complete with exit status proceed
 + echo Done
 Done
+Submitted batch job 63009530
 [you@cdrxyz scratch]$ 
 ```
 
