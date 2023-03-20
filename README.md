@@ -49,30 +49,20 @@ salloc: Waiting for resource configuration
 salloc: Nodes cdr552 are ready for job
 [bcardoen@cdr552]$
 ```
+
 Set the DATASET variable to the name of your dataset
 ```bash
 export DATASET="/scratch/$USER/FIXME"
 ```
-
-**NOTE** Please make sure your dataset is organized like so:
+And you need to configure where you want the data saved:
 ```
-yourdatasetdirectory
-  --cell1
-    --file1.csv
-    --file2.csv
-  --cell2
-    -- ...
+export OUTPATH="/scratch/$USER/OUTPUT"
 ```
-You are free to choose the dataset directory naming, as well and the 'cell1' and 'cell2' directories (or even have just 1 subdirectory), but the data is expected to be nested.
 
 The remainder is done by executing a script, to keep things simple for you.
 This script assumes you want to process dStorm data in CSV format, output by Thunderstorm.
 ```bash
-wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_smlm_alignment_colocalization/main/script.sh -O script.sh
-```
-For GSD data (bin, ascii).
-```bash
-wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_smlm_alignment_colocalization/main/script_lydia.sh -O script.sh
+wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_mcs_detect/main/check.sh -O script.sh
 ```
 Make it executable
 ```bash
@@ -82,7 +72,7 @@ Execute it
 ```bash
 ./script.sh
 ```
-That's it. Your output is now stored in the same folders as your source data.
+That's it. 
 At the end you'll see something like
 ```bash
  Info: 2023-02-27 06:14:21 curator.jl:180: Complete with exit status proceed
@@ -92,15 +82,14 @@ Done
 ```
 
 This includes, but is not limited to
-- Aligned.csv files for point cloud data
-- Colocalization images for all implemented metrics
+See the reppository
 
 For each execution, temporary output is saved in the directory `tmp_{DATE}`.
 
 See below for more docs.
 
 ### Troubleshooting
-See [DataCurator.jl](https://github.com/NanoscopyAI/DataCurator.jl), [SmlmTools](https://github.com/NanoscopyAI/SmlmTools.jl) and [Colocalization](https://github.com/NanoscopyAI/Colcocalization.jl) repositories for documentation.
+See [DataCurator.jl](https://github.com/NanoscopyAI/DataCurator.jl), (https://github.com/NanoscopyAI/SubPrecisionContactDetection.jl) repositories for documentation.
 
 Create an [issue here](https://github.com/NanoscopyAI/tutorial_smlm_alignment_colocalization/issues/new/choose) with
 - Exact error (if any)
