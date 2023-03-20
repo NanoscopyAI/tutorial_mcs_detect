@@ -70,13 +70,13 @@ echo "Total of $FN cells to process"
 
 echo "Creating computing request"
 
-sed -i "s|EMAIL|${EMAIL}|" recipe.toml
-sed -i "s|GROUP|${GROUP}|" recipe.toml
-# sed -i "s|outpath|${OUTPATH}|" recipe.toml
-# sed -i "s|outpath|${OUTPATH}|" recipe.toml
+wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_mcs_detect/main/submitdata.sh -o submit.sh
 
+sed -i "s|EMAIL|${EMAIL}|" submit.sh
+sed -i "s|ACCOUNT|${GROUP}|" submit.sh
+sed -i "s|CELLS|${FN}|" submit.sh
 
+echo "Submitting"
+sbatch submit.sh
+echo "Done"
 
-## sed group
-## sed email
-## 
