@@ -52,5 +52,9 @@ wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_re
 echo "Updating recipe"
 sed -i "s|testdir|${DATASET}|" recipe.toml
 
+
+echo "Updating recipe"
+sed -i "s|outpath|${OUTPATH}|" recipe.toml
+
 echo "Running recipe"
 ./datacurator_latest.sif -r recipe.toml
