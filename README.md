@@ -49,7 +49,8 @@ And you need to configure where you want the data saved:
 ```bash
 export OUTPATH="/scratch/$USER/OUTPUT"
 ```
-Set your group ID and email
+Set your group ID and email.
+Replace `def-abcdef` with an account ID, which is either `def-yourpiname` or `rrg-yourpiname`. Check ccdb.computecanada.ca, or the output of `groups`.
 ```bash
 export GROUP="def-abcdef"
 export EMAIL="your@university.ca"
@@ -59,7 +60,6 @@ export EMAIL="your@university.ca"
 ### Step 4 Validate your dataset
 If you schedule the processing of a large dataset, you don't want it to be interrupted because of avoidable mistakes, so first we'll check if the data is correctly organized so processing works as expected.
 Get Compute resources:
-Replace `FIXME` with an account ID, which is either `def-yourpiname` or `rrg-yourpiname`. Check ccdb.computecanada.ca, or the output of `groups`.
 ```bash
 salloc --mem=62GB --account=$GROUPID --cpus-per-task=8 --time=3:00:00
 ```
