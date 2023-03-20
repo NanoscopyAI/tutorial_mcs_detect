@@ -46,6 +46,10 @@ echo "Downloading required files"
 singularity pull --arch amd64 library://bcvcsert/datacurator/datacurator:latest
 chmod u+x datacurator_latest.sif
 
+echo "Downloading mcs-detect"
+singularity pull mcsdetect.sif --arch amd64 library://bcvcsert/subprecisioncontactdetection/mcsdetect_f35_j1.7:j1.8
+chmod u+x mcsdetect.sif
+
 echo "Downloading recipe"
 wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_mcs_detect/main/recipe.toml -O recipe.toml
 
@@ -58,3 +62,21 @@ sed -i "s|outpath|${OUTPATH}|" recipe.toml
 
 echo "Running recipe"
 ./datacurator_latest.sif -r recipe.toml
+
+echo "Finding number of files"
+FN=`wc -l in.txt | awk '{print $1}'`
+
+echo "Total of $FN cells to process"
+
+echo "Creating computing request"
+
+sed -i "s|EMAIL|${EMAIL}|" recipe.toml
+sed -i "s|GROUP|${GROUP}|" recipe.toml
+# sed -i "s|outpath|${OUTPATH}|" recipe.toml
+# sed -i "s|outpath|${OUTPATH}|" recipe.toml
+
+
+
+## sed group
+## sed email
+## 
