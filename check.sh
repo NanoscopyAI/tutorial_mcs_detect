@@ -24,7 +24,7 @@ fi
 
 
 if [ ! -d "$OUTPATH" ]; then
-    echo "Dataset directory $DATASET does not exist. Set it by export DATASET=/scratch/$USER/my/data/outputdirectory"
+    echo "Dataset directory $OUTPATH does not exist. Set it by export DATASET=/scratch/$USER/my/data/outputdirectory"
     exit 1
 fi
 
