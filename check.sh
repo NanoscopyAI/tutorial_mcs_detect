@@ -18,7 +18,13 @@ set -euxo pipefail
 
 
 if [ ! -d "$DATASET" ]; then
-    echo "Dataset directory $DATASET does not exist. Set it by export DATASET=/scratch/$USER/my/data/directory"
+    echo "Dataset directory $DATASET does not exist. Set it by export DATASET=/scratch/$USER/my/data/inputdirectory"
+    exit 1
+fi
+
+
+if [ ! -d "$OUTPATH" ]; then
+    echo "Dataset directory $DATASET does not exist. Set it by export DATASET=/scratch/$USER/my/data/outputdirectory"
     exit 1
 fi
 
