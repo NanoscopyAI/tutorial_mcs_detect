@@ -99,7 +99,10 @@ Submitted batch job 63009530
 [you@cdrxyz scratch]$ 
 ```
 
-You will receive an email when your cells are scheduled to process and when they complete.
+You will receive an email when your cells are scheduled to process and when they complete, e.g.
+```
+Slurm Array Summary Job_id=63009530_* (63009530) Name=submit.sh Began
+```
 
 For each execution, temporary output is saved in the directory `tmp_{DATE}`.
 
