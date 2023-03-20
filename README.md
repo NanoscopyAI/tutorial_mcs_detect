@@ -98,14 +98,13 @@ Done
 [you@cdrxyz scratch]$ 
 ```
 
-This includes, but is not limited to
-See the reppository
+You will receive an email when your cells are scheduled to process and when they complete.
 
 For each execution, temporary output is saved in the directory `tmp_{DATE}`.
 
-### 
-
 See below for more docs.
+
+See https://github.com/bencardoen/SubPrecisionContactDetection.jl/ for documentation on the project, what the generated output means and so forth.
 
 ### Troubleshooting
 See [DataCurator.jl](https://github.com/NanoscopyAI/DataCurator.jl), (https://github.com/NanoscopyAI/SubPrecisionContactDetection.jl) repositories for documentation.
