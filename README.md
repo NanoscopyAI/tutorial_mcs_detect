@@ -1,15 +1,22 @@
 # Walkthrough
-The below steps allow you to run fiduciual alignment on 2/3D point cloud data, then compute colocalization metrics.
+The below steps allow you to compute contacts in 3D STED between subcellular organelles.
+See https://github.com/bencardoen/SubPrecisionContactDetection.jl/ for documentation on the project.
 
 ## What this will do for you:
 - Given any number of directories with 3D TIF STED data of Mitochondria and ER
+- Check that your dataset is valid
+- Schedule it for processing
 - Compute the contact sites 
 - Compute the statistics of those contacts
 - Notify you when it's completed
 
+
 ## What you will need
 - A Compute Canada account https://ccdb.computecanada.ca/security/login
 - Globus to transfer data https://github.com/NanoscopyAI/globus
+
+### Step 0
+Copy your data to the cluster using Globus. 
 
 ### Step 1
 Log in to cluster
@@ -85,6 +92,8 @@ This includes, but is not limited to
 See the reppository
 
 For each execution, temporary output is saved in the directory `tmp_{DATE}`.
+
+### 
 
 See below for more docs.
 
