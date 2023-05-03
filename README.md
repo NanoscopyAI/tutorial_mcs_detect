@@ -36,7 +36,7 @@ Now it'll show
 [you@cedar5 /scratch/YOU]$
 ```
 
-Create a new, clean directory:
+Create a new, clean directory (replace `experiment` with something you pick, e.g. the date to keep track of experiments):
 ```bash
 mkdir -p experiment
 cd experiment
