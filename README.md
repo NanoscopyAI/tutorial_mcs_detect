@@ -2,6 +2,11 @@
 The below steps allow you to compute contacts in 3D STED between subcellular organelles.
 See https://github.com/bencardoen/SubPrecisionContactDetection.jl/ for documentation on the project.
 
+## Table of contents
+1. [Batch processing on Compute Canada (1-1000s of cells)](#batch)
+2. [Processing a single cell](#single)
+
+<a name="batch"></a>
 ## What this will do for you:
 - Given any number of directories with 3D TIF STED data of Mitochondria and ER 
 - Check that your dataset is valid
@@ -149,3 +154,45 @@ Create an [issue here](https://github.com/NanoscopyAI/tutorial_smlm_alignment_co
 - Input
 - Expected output
 
+
+<a name="single"></a>
+### Running a single cell (on cluster or at home)
+- Assumes you have a Linux-like command line available, for windows install [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
+
+Once you have WSL installed:
+##### Download singularity
+```bash
+wget https://github.com/apptainer/singularity/releases/download/v3.8.7/singularity-container_3.8.7_amd64.deb
+```
+##### Install it
+```bash
+sudo apt-get install ./singularity-container_3.8.7_amd64.deb
+```
+##### Test if it's working as expected
+```bash
+singularity --version
+```
+this will show
+```bash
+singularity version 3.8.7
+```
+##### Download MCSDetect Singularity image
+```bash
+singularity pull --arch amd64 library://bcvcsert/subprecisioncontactdetection/mcsdetect:latest
+mv mcsdetect_latest.sif mcsdetect.sif
+chmod u+x mcsdetect.sif
+```
+##### Configure
+```bash
+export IDIR="/where/your/data/is/stored/"
+export ODIR="/where/your/data/should/be/stored/"
+```
+You should also grant singularity access
+```
+export SINGULARITY_BINDPATH=${PWD}
+```
+##### Run
+```bash
+ singularity exec mcsdetect.sif julia --project=/opt/SubPrecisionContactDetection.jl --sysimage=/opt/SubPrecisionContactDetection.jl/sys_img.so $LSRC/scripts/ercontacts.jl  --inpath $IDIR -r "*[0,1].tif" -w 2 --deconvolved --sigmas 2.5-2.5-1.5 --outpath  $ODIR --alpha 0.05 --beta  0.05 -c 1 -v 2000 --mode=decon 
+```
+The results and what the resulting output should be is described [here](https://github.com/bencardoen/SubPrecisionContactDetection.jl#usage)
