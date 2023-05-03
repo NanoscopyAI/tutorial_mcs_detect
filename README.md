@@ -35,11 +35,19 @@ Now it'll show
 ```bash
 [you@cedar5 /scratch/YOU]$
 ```
+
+Create a new, clean directory:
+```bash
+mkdir -p experiment
+cd experiment
+```
+
 ### Step 2
 Copy your data to a folder under /scratch/$USER, preferably using [Globus](https://globus.computecanada.ca/)
 
 ### Step 3
-Configure 
+
+#### 3.1 Configure 
 
 Set the DATASET variable to the name of your dataset
 ```bash
@@ -49,6 +57,10 @@ And you need to configure where you want the data saved:
 ```bash
 export OUTPATH="/scratch/$USER/OUTPUT"
 ```
+
+**DO NOT PROCEED UNLESS THESE 2 DIRECTORIES EXIST**
+
+#### 3.2 Account info
 Set your group ID and email.
 Replace `def-abcdef` with an account ID, which is either `def-yourpiname` or `rrg-yourpiname`. Check ccdb.computecanada.ca, or the output of `groups`.
 ```bash
@@ -75,6 +87,8 @@ salloc: Nodes cdr552 are ready for job
 [bcardoen@cdr552]$
 ```
 
+
+### Step 5 Execute
 
 The remainder is done by executing a script, to keep things simple for you.
 This script assumes you want to process dStorm data in CSV format, output by Thunderstorm.
