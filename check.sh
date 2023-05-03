@@ -47,7 +47,8 @@ singularity pull --arch amd64 library://bcvcsert/datacurator/datacurator:latest
 chmod u+x datacurator_latest.sif
 
 echo "Downloading mcs-detect"
-singularity pull mcsdetect.sif --arch amd64 library://bcvcsert/subprecisioncontactdetection/mcsdetect:latest
+singularity pull --arch amd64 library://bcvcsert/subprecisioncontactdetection/mcsdetect:latest
+mv mcsdetect_latest.sif mcsdetect.sif
 chmod u+x mcsdetect.sif
 
 echo "Downloading recipe"
