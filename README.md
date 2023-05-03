@@ -3,7 +3,7 @@ The below steps allow you to compute contacts in 3D STED between subcellular org
 See https://github.com/bencardoen/SubPrecisionContactDetection.jl/ for documentation on the project.
 
 ## What this will do for you:
-- Given any number of directories with 3D TIF STED data of Mitochondria and ER
+- Given any number of directories with 3D TIF STED data of Mitochondria and ER 
 - Check that your dataset is valid
 - Schedule it for processing
 - Compute the contact sites 
@@ -14,6 +14,23 @@ See https://github.com/bencardoen/SubPrecisionContactDetection.jl/ for documenta
 ## What you will need
 - A Compute Canada account https://ccdb.computecanada.ca/security/login
 - Globus to transfer data https://github.com/NanoscopyAI/globus
+
+## Dataset organization:
+Your data **has to be organized** in the following way
+```
+- replicate      (1, 2, ...), directory
+  - condition    (COS7, RMgp78), directory
+     - Series001 (cellnr), directory
+        ...0.tif  #Mitochannel
+        ...1.tif  #ER Channel
+     - Series002 etc
+```
+Do not:
+- store other files 
+- use spaces in names
+- change condition names "C0s7" and "Cos7"
+If you do, the statistical analysis will be corrupted.
+
 
 ### Step 0
 Copy your data to the cluster using Globus. 
