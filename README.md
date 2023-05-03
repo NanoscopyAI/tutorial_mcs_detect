@@ -118,7 +118,7 @@ You will receive an email when your cells are scheduled to process and when they
 Slurm Array Summary Job_id=63009530_* (63009530) Name=submit.sh Began
 ```
 
-For each execution, temporary output is saved in the directory `tmp_{DATE}`.
+For each execution, temporary output is saved in the directory `/scratch/$USER/tmp_{DATE}`, e.g. `tmp_05_03_2023_HH04_36`.
 
 See below for more docs.
 
