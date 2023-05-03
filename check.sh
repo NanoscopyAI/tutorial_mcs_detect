@@ -60,7 +60,7 @@ sed -i "s|testdir|${DATASET}|" recipe.toml
 echo "Updating recipe"
 sed -i "s|outpath|${OUTPATH}|" recipe.toml
 
-echo "Running recipe"
+echo "Validating dataset with recipe"
 ./datacurator_latest.sif -r recipe.toml
 
 echo "Finding number of files"
