@@ -41,13 +41,13 @@ If you do, the statistical analysis will be corrupted.
 Copy your data to the cluster using Globus. 
 
 ### Step 1
-Log in to cluster
+Log in to cluster, where you'd replace `$USER` with your userid.
 ```bash
-ssh you@computecanada.ca
+ssh $USER@computecanada.ca
 ```
-You'd see something like this
+You'll see something like this
 ```
-[YOU@cedar5 ~]$
+[$USER@cedar5 ~]$
 ```
 Change to `scratch` directory
 ```bash
@@ -57,12 +57,18 @@ Now it'll show
 ```bash
 [you@cedar5 /scratch/YOU]$
 ```
+Note that not all shells will show your current working directory, when in doubt type `pwd` to check, it will print
+```bash
+/scratch/$USER
+```
+where $USER is equal to your username.
 
 Create a new, clean directory (replace `experiment` with something you pick, e.g. the date to keep track of experiments):
 ```bash
 mkdir -p experiment
 cd experiment
 ```
+You can create this with Globus as well. A new directory ensures there's no clashes with existing files.
 
 ### Step 2
 Copy your data to a folder under /scratch/$USER, preferably using [Globus](https://globus.computecanada.ca/)
@@ -95,7 +101,7 @@ export EMAIL="your@university.ca"
 If you schedule the processing of a large dataset, you don't want it to be interrupted because of avoidable mistakes, so first we'll check if the data is correctly organized so processing works as expected.
 Get Compute resources:
 ```bash
-salloc --mem=62GB --account=$GROUPID --cpus-per-task=8 --time=3:00:00
+salloc --mem=62GB --account=$GROUP --cpus-per-task=8 --time=3:00:00
 ```
 Once granted this will look something like this:
 ```bash
@@ -153,6 +159,24 @@ Create an [issue here](https://github.com/NanoscopyAI/tutorial_smlm_alignment_co
 - Exact error (if any)
 - Input
 - Expected output
+#### Checking queue delays
+To check what the status is of a queued job, type
+```bash
+sq
+```
+this will print for each job the status (running, pending, ..) and the reason (if any) why it's queued. 
+
+You can also view
+```bash
+partition-stats
+```
+This will print a table showing how long the queue times are, per time slot. See the documentation for a more complete explanation.
+
+Queue time will increase with usage (slowly), you can check how strong this effect is with:
+```bash
+sshare -l -A $GROUP_cpu
+```
+Check the column `LEVELFS`, a value > 1 means high priority (almost no waiting), < 1 is more waiting.
 
 
 <a name="single"></a>
