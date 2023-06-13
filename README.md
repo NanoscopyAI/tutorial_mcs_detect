@@ -5,6 +5,7 @@ See https://github.com/bencardoen/SubPrecisionContactDetection.jl/ for documenta
 ## Table of contents
 1. [Batch processing on Compute Canada (1-1000s of cells)](#batch)
 2. [Processing a single cell](#single)
+3. [Troubleshooting](#trouble)
 
 <a name="batch"></a>
 ## What this will do for you:
@@ -219,4 +220,22 @@ export SINGULARITY_BINDPATH=${PWD}
 ```bash
  singularity exec mcsdetect.sif julia --project=/opt/SubPrecisionContactDetection.jl --sysimage=/opt/SubPrecisionContactDetection.jl/sys_img.so $LSRC/scripts/ercontacts.jl  --inpath $IDIR -r "*[0,1].tif" -w 2 --deconvolved --sigmas 2.5-2.5-1.5 --outpath  $ODIR --alpha 0.05 --beta  0.05 -c 1 -v 2000 --mode=decon 
 ```
+
 The results and what the resulting output should be is described [here](https://github.com/bencardoen/SubPrecisionContactDetection.jl#usage)
+
+<a name="trouble"></a>
+### Troubleshooting
+
+#### Memory exceeded
+For large cells the default memory limit may be not enough. 
+A higher limit allows (very) large cells to process, but can mean longer queue time.
+
+You can find out which cells failed:
+```bash
+wget https://github.com/NanoscopyAI/tutorial_mcs_detect/blob/main/findcellstorerun.sh
+chod u+x findcellstorerun.sh
+./findcellstorerun.sh $JOBID infilest.txt outfiles.txt
+```
+This script will ask the cluster which cells failed, extract them from the input and output lists, and create new ones with only those cells so you can reschedule them.
+
+Before rescheduling, change the [memory line](https://github.com/NanoscopyAI/tutorial_mcs_detect/blob/f973b30134670b4f9172953d666d3c9f63b18dde/submitdata.sh#L3) and the number of cells to rerun.
