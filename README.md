@@ -246,6 +246,9 @@ mv out_rerun.txt out.txt
 This script will ask the cluster which cells failed, extract them from the input and output lists, and create new ones with only those cells so you can reschedule them.
 
 Next, you'll need to update your `submit.sh` script that was used in scheduling the data earlier:
+
+During the running of the `check.sh` script, a folder `tmp_{date}` is created, where all the above files are saved (incl. submit.sh).
+
 ```bash
 nano submit.sh
 ```
