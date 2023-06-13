@@ -232,10 +232,30 @@ A higher limit allows (very) large cells to process, but can mean longer queue t
 
 You can find out which cells failed:
 ```bash
-wget https://github.com/NanoscopyAI/tutorial_mcs_detect/blob/main/findcellstorerun.sh
+wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_mcs_detect/blob/main/findcellstorerun.sh
 chod u+x findcellstorerun.sh
-./findcellstorerun.sh $JOBID infilest.txt outfiles.txt
+# Copy the old lists as a backup
+cp in.txt inold.txt
+cp out.txt outold.txt
+# Create in/out_rerun.txt that contain failed cells
+./findcellstorerun.sh $JOBID in.txt out.txt
+# Overwrite so the scheduling script knows where to look
+mv in_rerun.txt in.txt
+mv out_rerun.txt out.txt
 ```
 This script will ask the cluster which cells failed, extract them from the input and output lists, and create new ones with only those cells so you can reschedule them.
 
-Before rescheduling, change the [memory line](https://github.com/NanoscopyAI/tutorial_mcs_detect/blob/f973b30134670b4f9172953d666d3c9f63b18dde/submitdata.sh#L3) and the number of cells to rerun.
+Next, you'll need to update your `submit.sh` script that was used in scheduling the data earlier:
+```bash
+nano submit.sh
+```
+This will open an text editor where you can edit and save the script, change the lines with memory and array
+```bash
+#SBATCH --mem=116G # Change to e.g. 140G (>120G will mean large memory nodes, > 300G will be very large nodes, with very long wait times)
+...
+#SBATCH --array=1-SETTONEWNROFCELLS
+```
+Then reschedule
+```bash
+sbatch submit.sh
+```
