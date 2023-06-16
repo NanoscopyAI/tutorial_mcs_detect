@@ -46,7 +46,7 @@ ODIR=$(sed -n "${SLURM_ARRAY_TASK_ID}p" out.txt)
 IMAGE="$SLURM_TMPDIR/mcsdetect.sif"
 LSRC="/opt/SubPrecisionContactDetection.jl"
 
-module load singularity
+module load apptainer/1.1
 export SINGULARITY_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
 
 mkdir -p $ODIR
