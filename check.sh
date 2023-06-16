@@ -49,8 +49,10 @@ cd tmp_$NOW
 
 
 echo "Configuring singularity"
-module load singularity
+module load apptainer/1.1
 export SINGULARITY_CACHEDIR="$SLURM_TMPDIR/singularity/cache"
+export APPTAINER_CACHEDIR="/scratch/$USER"
+export APPTAINER_BINDBATH="/scratch/$USER,$SLURM_TMPDIR"
 export SINGULARITY_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
 export JULIA_NUM_THREADS="$SLURM_CPUS_PER_TASK"
 
