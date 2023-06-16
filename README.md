@@ -141,7 +141,6 @@ salloc: Nodes cdr552 are ready for job
 ### Step 5 Execute
 
 The remainder is done by executing a script, to keep things simple for you.
-This script assumes you want to process dStorm data in CSV format, output by Thunderstorm.
 ```bash
 wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_mcs_detect/main/check.sh -O script.sh
 ```
