@@ -58,9 +58,10 @@ export JULIA_NUM_THREADS="$SLURM_CPUS_PER_TASK"
 
 echo "Checking if remote lib is available ..."
 
-apptainer remote list | grep -q SylabsCloud
+export LISTED=`apptainer remote list | grep -c SylabsCloud`
+# apptainer remote list | grep -q SylabsCloud
 
-if [ $? -eq 0 ]
+if [ $LISTED -eq 1 ]
 then
     apptainer remote use SylabsCloud
 else
