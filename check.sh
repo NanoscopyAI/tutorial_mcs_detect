@@ -56,6 +56,19 @@ export APPTAINER_BINDBATH="/scratch/$USER,$SLURM_TMPDIR"
 export SINGULARITY_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
 export JULIA_NUM_THREADS="$SLURM_CPUS_PER_TASK"
 
+echo "Checking if remote lib is available ..."
+
+apptainer remote list | grep -q SylabsCloud
+
+if [ $? -eq 0 ]
+then
+    apptainer remote use SylabsCloud
+else
+    echo "No available, adding .."
+    apptainer remote add --no-login SylabsCloud cloud.sycloud.io
+    apptainer remote use SylabsCloud
+fi
+
 echo "Downloading required files"
 singularity pull --arch amd64 library://bcvcsert/datacurator/datacurator:latest
 chmod u+x datacurator_latest.sif
