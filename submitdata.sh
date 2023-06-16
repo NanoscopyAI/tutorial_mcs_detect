@@ -47,6 +47,7 @@ IMAGE="$SLURM_TMPDIR/mcsdetect.sif"
 LSRC="/opt/SubPrecisionContactDetection.jl"
 
 module load apptainer/1.1
+export APPTAINER_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
 export SINGULARITY_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
 
 mkdir -p $ODIR
