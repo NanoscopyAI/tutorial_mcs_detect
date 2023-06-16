@@ -50,7 +50,7 @@ cd tmp_$NOW
 
 echo "Configuring singularity"
 module load apptainer/1.1
-export SINGULARITY_CACHEDIR="$SLURM_TMPDIR/singularity/cache"
+export SINGULARITY_CACHEDIR="/scratch/$USER"
 export APPTAINER_CACHEDIR="/scratch/$USER"
 export APPTAINER_BINDBATH="/scratch/$USER,$SLURM_TMPDIR"
 export SINGULARITY_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
