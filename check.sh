@@ -98,7 +98,7 @@ echo "Total of $FN cells to process"
 
 echo "Creating computing request"
 
-wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_mcs_detect/main/submitdata.sh -O submit.sh
+#wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_mcs_detect/main/submitdata.sh -O submit.sh
 
 sed -i "s|EMAIL|${EMAIL}|" submit.sh
 sed -i "s|ACCOUNT|${GROUP}|" submit.sh
