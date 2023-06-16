@@ -33,6 +33,18 @@ cd /scratch/$USER
 NOW=$(date +"%m_%d_%Y_HH%I_%M")
 echo "Creating temporary directory tmp_$NOW"
 mkdir tmp_$NOW
+
+FILE="submit.sh"
+echo "Cheking if you have your own submission script.... looking for submit.sh ..."
+if test -f "$FILE"; then
+    echo "$FILE exists -- not going to download a new submission script"
+else
+    echo "No script found, downloading fresh one"
+    wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_mcs_detect/main/submitdata.sh -O submit.sh
+fi
+cp $FILE tmp_$NOW/
+
+
 cd tmp_$NOW
 
 
