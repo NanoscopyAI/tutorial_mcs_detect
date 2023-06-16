@@ -28,8 +28,6 @@ if [ ! -d "$OUTPATH" ]; then
     exit 1
 fi
 
-cd /scratch/$USER
-
 NOW=$(date +"%m_%d_%Y_HH%I_%M")
 echo "Creating temporary directory tmp_$NOW"
 mkdir tmp_$NOW
@@ -65,7 +63,7 @@ if [ $LISTED -eq 1 ]
 then
     apptainer remote use SylabsCloud
 else
-    echo "No available, adding .."
+    echo "Not available, adding .."
     apptainer remote add --no-login SylabsCloud cloud.sycloud.io
     apptainer remote use SylabsCloud
 fi
@@ -108,4 +106,3 @@ sed -i "s|CELLS|${FN}|" submit.sh
 echo "Submitting"
 sbatch submit.sh
 echo "Done"
-
