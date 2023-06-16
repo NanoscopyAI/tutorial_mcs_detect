@@ -76,6 +76,27 @@ Copy your data to a folder under /scratch/$USER, preferably using [Globus](https
 
 ### Step 3
 
+#### 3.0 [Optional] If you have your own configuration scripts
+If you already completed this tutorial before, or if you know what you're doing and want to change parameters, for example:
+- Ask for more memory
+- Change scheduling options
+- Change channel numbers
+- ...
+
+The below script that does everything for you will check if you have an existing script in the current directory, named `submit.sh`. 
+If it finds this, it won't use the default pristine version.
+However, make sure these fields in your custom script (which will be copied and modified on the fly) are **EXACTLY** like this:
+```
+#SBATCH --account=ACCOUNT
+#SBATCH --mail-user=EMAIL
+#SBATCH --array=1-CELLS
+```
+These are automatically updated with the right nr of cells, email, and account.
+Everything else is up to you to modify as you see fit, e.g. if you want to increase memory:
+```
+#SBATCH --mem=180G
+```
+
 #### 3.1 Configure 
 
 Set the DATASET variable to the name of your dataset
