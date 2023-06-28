@@ -282,3 +282,21 @@ Then reschedule
 ```bash
 sbatch submit.sh
 ```
+
+### Splics analysis
+If mito and ER are channels 0 and 1, and SPLICS is 2.tif, you can use DataCurator to filter the splics channel to only look at overlap of ER and Mito.
+
+Download the recipe 
+```bash
+wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/ermito.toml -o recipe.toml
+```
+Download Datacurator
+```bash
+singularity pull --arch amd64 library://bcvcsert/datacurator/datacurator:latest
+chmod u+x datacurator_latest.sif
+```
+Execute recipe
+```bash
+./datacurator_latest.sif -r recipe.toml
+```
+See the [recipe](https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/ermito.toml) for documentation.
