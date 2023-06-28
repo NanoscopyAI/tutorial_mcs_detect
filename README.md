@@ -260,8 +260,8 @@ cp out.txt outold.txt
 # Create in/out_rerun.txt that contain failed cells
 ./findcellstorerun.sh $JOBID in.txt out.txt
 # Overwrite so the scheduling script knows where to look
-mv in_rerun.txt in.txt
-mv out_rerun.txt out.txt
+mv inlist_rerun.txt in.txt
+mv outlist_rerun.txt out.txt
 ```
 This script will ask the cluster which cells failed, extract them from the input and output lists, and create new ones with only those cells so you can reschedule them.
 
