@@ -252,8 +252,8 @@ A higher limit allows (very) large cells to process, but can mean longer queue t
 
 You can find out which cells failed:
 ```bash
-wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_mcs_detect/blob/main/findcellstorerun.sh
-chod u+x findcellstorerun.sh
+wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_mcs_detect/main/findcellstorerun.sh
+chmod u+x findcellstorerun.sh
 # Copy the old lists as a backup
 cp in.txt inold.txt
 cp out.txt outold.txt
