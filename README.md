@@ -288,6 +288,30 @@ If you only want to compute the background filtering, use these instructions.
 
 Run this in an interactive session, see above.
 
+For reference, the setup should look like 
+```bash
+module load apptainer/1.1
+export SINGULARITY_CACHEDIR="/scratch/$USER"
+export APPTAINER_CACHEDIR="/scratch/$USER"
+export APPTAINER_BINDBATH="/scratch/$USER,$SLURM_TMPDIR"
+export SINGULARITY_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
+export JULIA_NUM_THREADS="$SLURM_CPUS_PER_TASK"
+
+echo "Checking if remote lib is available ..."
+
+export LISTED=`apptainer remote list | grep -c SylabsCloud`
+# apptainer remote list | grep -q SylabsCloud
+
+if [ $LISTED -eq 1 ]
+then
+    apptainer remote use SylabsCloud
+else
+    echo "Not available, adding .."
+    apptainer remote add --no-login SylabsCloud cloud.sycloud.io
+    apptainer remote use SylabsCloud
+fi
+```
+
 #### Download the recipe 
 ```bash
 wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/ermito.toml -o recipe.toml
@@ -312,3 +336,5 @@ chmod u+x datacurator_latest.sif
 ./datacurator_latest.sif -r recipe.toml
 ```
 See the [recipe](https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/ermito.toml) for documentation.
+
+Output is saved in the _same_ location as input files. 
