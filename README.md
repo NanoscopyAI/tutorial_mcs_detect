@@ -283,19 +283,31 @@ Then reschedule
 sbatch submit.sh
 ```
 
-### Splics analysis
-If mito and ER are channels 0 and 1, and SPLICS is 2.tif, you can use DataCurator to filter the splics channel to only look at overlap of ER and Mito.
+### MCS Detect Background filtering only (~ segmentation).
+If you only want to compute the background filtering, use these instructions.
 
-Download the recipe 
+Run this in an interactive session, see above.
+
+#### Download the recipe 
 ```bash
 wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/ermito.toml -o recipe.toml
 ```
-Download Datacurator
+
+The recipe looks for files ending with 0, 1, or 2.tif. 
+If that does not match your data, change it, for example
+```toml
+["*1.tif"] # Matches only abc_1.tif, 01.tif etc.
+["*[1-2].tif"] # Only channels 1 and 2
+```
+Use `nano` or `vi` as text editors if needed.
+
+#### Download Datacurator
 ```bash
 singularity pull --arch amd64 library://bcvcsert/datacurator/datacurator:latest
 chmod u+x datacurator_latest.sif
 ```
-Execute recipe
+
+#### Execute recipe
 ```bash
 ./datacurator_latest.sif -r recipe.toml
 ```
