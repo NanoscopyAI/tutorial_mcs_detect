@@ -209,7 +209,7 @@ Once you have WSL installed:
 ```bash
 wget https://github.com/apptainer/singularity/releases/download/v3.8.7/singularity-container_3.8.7_amd64.deb
 ```
-##### Install it
+##### Install itYou're sure this is the
 ```bash
 sudo apt-get install ./singularity-container_3.8.7_amd64.deb
 ```
@@ -324,6 +324,13 @@ If that does not match your data, change it, for example
 ["*[1-2].tif"] # Only channels 1 and 2
 ```
 Use `nano` or `vi` as text editors if needed.
+
+**Change the inputdirectory**
+The recipe will have `testdir` as inputdirectory, change it to point to your directory of choice. 
+Or if you have defined it as a variable `DATASET`:
+```bash
+sed -i "s|testdir|${DATASET}|" recipe.toml
+```
 
 #### Download Datacurator
 ```bash
