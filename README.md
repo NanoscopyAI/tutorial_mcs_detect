@@ -314,7 +314,7 @@ fi
 
 #### Download the recipe 
 ```bash
-wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/ermito.toml -o recipe.toml
+wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/ermito.toml -O recipe.toml
 ```
 
 The recipe looks for files ending with 0, 1, or 2.tif. 
