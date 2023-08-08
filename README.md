@@ -286,7 +286,9 @@ sbatch submit.sh
 ### MCS Detect Background filtering only (~ segmentation).
 If you only want to compute the background filtering, use these instructions.
 
-Run this in an interactive session, see above.
+Run this in an interactive session, see [above](https://github.com/NanoscopyAI/tutorial_mcs_detect/blob/main/README.md#step-4-validate-your-dataset).
+
+Your prompt should look like `user@cdr123` where 123 varies, not `user@cedar1` (or cedar5), those are the login nodes.
 
 For reference, the setup should look like 
 ```bash
