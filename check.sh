@@ -72,10 +72,21 @@ echo "Downloading required files"
 singularity pull --arch amd64 library://bcvcsert/datacurator/datacurator:latest
 chmod u+x datacurator_latest.sif
 
-echo "Downloading mcs-detect"
-singularity pull --arch amd64 library://bcvcsert/subprecisioncontactdetection/mcsdetect:latest
-mv mcsdetect_latest.sif mcsdetect.sif
-chmod u+x mcsdetect.sif
+MCS="mcsdetect.sif"
+if test -f "$FILE"; then
+    echo "$FILE exists -- not going to download a new image"
+    chmod u+x $FILE
+else
+    echo "No recipe found, downloading fresh one"
+    singularity pull --arch amd64 library://bcvcsert/subprecisioncontactdetection/mcsdetect:latest
+    mv mcsdetect_latest.sif mcsdetect.sif
+    chmod u+x mcsdetect.sif
+fi
+
+# echo "Downloading mcs-detect"
+# singularity pull --arch amd64 library://bcvcsert/subprecisioncontactdetection/mcsdetect:latest
+# mv mcsdetect_latest.sif mcsdetect.sif
+# chmod u+x mcsdetect.sif
 
 echo "Downloading recipe"
 wget https://raw.githubusercontent.com/NanoscopyAI/tutorial_mcs_detect/main/recipe.toml -O recipe.toml
