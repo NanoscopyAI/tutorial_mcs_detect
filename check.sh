@@ -42,7 +42,12 @@ else
 fi
 cp $FILE tmp_$NOW/
 
-
+MCS="mcsdetect.sif"
+if test -f "$MCS"; then
+    echo "$MCS exists -- not going to download a new image"
+    chmod u+x $MCS
+fi
+cp $MCS tmp_$NOW/
 cd tmp_$NOW
 
 
@@ -73,9 +78,9 @@ singularity pull --arch amd64 library://bcvcsert/datacurator/datacurator:latest
 chmod u+x datacurator_latest.sif
 
 MCS="mcsdetect.sif"
-if test -f "$FILE"; then
-    echo "$FILE exists -- not going to download a new image"
-    chmod u+x $FILE
+if test -f "$MCS"; then
+    echo "$MCS exists -- not going to download a new image"
+    chmod u+x $MCS
 else
     echo "No recipe found, downloading fresh one"
     singularity pull --arch amd64 library://bcvcsert/subprecisioncontactdetection/mcsdetect:latest
