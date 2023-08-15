@@ -347,3 +347,12 @@ chmod u+x datacurator_latest.sif
 See the [recipe](https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/ermito.toml) for documentation.
 
 Output is saved in the _same_ location as input files. 
+
+
+### Postprocessing
+Extract the results using zip and Globus
+```bash
+cd $MYOUTPUT
+zip -r myoutput.zip $MYOUTPUT
+```
+
