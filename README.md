@@ -366,7 +366,31 @@ singularity pull --arch amd64 library://bcvcsert/subprecisioncontactdetection/mc
 mv mcsdetect_latest.sif mcsdetect.sif
 chmod u+x mcsdetect.sif
 ```
-Next, run
+As before, you need to acquire an interactive session. 
+Define where MCSDETECT stored data:
+```bash
+export MCSDETECTOUTPUT="..." # change 
+export CSVOUTPUT="..." # Where you want the CSV's saved (use directories in /scratch)
 ```
-singularity exec mcsdetect.sif [todo]
+Next, run:
+```bash
+echo "Configuring singularity"
+module load apptainer/1.1
+export SINGULARITY_CACHEDIR="/scratch/$USER"
+export APPTAINER_CACHEDIR="/scratch/$USER"
+export APPTAINER_BINDBATH="/scratch/$USER,$SLURM_TMPDIR"
+export SINGULARITY_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
+export JULIA_NUM_THREADS="$SLURM_CPUS_PER_TASK"
+singularity exec mcsdetect.sif python3 /opt/SubPrecisionContactDetection.jl/scripts/csvcuration.py --inputdirectory $MCSDETECTOUTPUT --outputdirectory $CSVOUTPUT
 ```
+That's it. 
+Assuming you pointed this to the location of MCSDETECT output, of the form
+```
+experiment
+   condition
+      series001
+        0.05
+          ...
+```
+It will extract the right CSVs, and tell you how many cells it detected. 
+It then will saved curated CSVs, both with 1 row per contact and 1 row per cell in your specified output directory.
