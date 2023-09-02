@@ -394,3 +394,9 @@ experiment
 ```
 It will extract the right CSVs, and tell you how many cells it detected. 
 It then will saved curated CSVs, both with 1 row per contact and 1 row per cell in your specified output directory.
+These files will be generated for you
+```
+contacts_aggregated.csv             # Contacts aggregated per cell, so 1 row = 1 cell, use this for e.g. mean height, Q95 Volume
+contacts_filtered_novesicles.csv    # All contacts, without vesicles
+contacts_unfiltered.csv             # All contacts, no filtering
+```
