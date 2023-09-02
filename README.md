@@ -6,6 +6,7 @@ See https://github.com/bencardoen/SubPrecisionContactDetection.jl/ for documenta
 1. [Batch processing on Compute Canada (1-1000s of cells)](#batch)
 2. [Processing a single cell](#single)
 3. [Troubleshooting](#trouble)
+4. [Postprocessing batch data](#post)
 
 <a name="batch"></a>
 ## What this will do for you:
@@ -349,10 +350,23 @@ See the [recipe](https://raw.githubusercontent.com/bencardoen/DataCurator.jl/mai
 Output is saved in the _same_ location as input files. 
 
 
-### Postprocessing
+### 4. Postprocessing
 Extract the results using zip and Globus
 ```bash
 cd $MYOUTPUT
 zip -r myoutput.zip $MYOUTPUT
 ```
 
+
+<a name="post"></a>
+#### 4.1 Run the postprocessing scripts
+Ensure you have the latest version
+```bash
+singularity pull --arch amd64 library://bcvcsert/subprecisioncontactdetection/mcsdetect:latest
+mv mcsdetect_latest.sif mcsdetect.sif
+chmod u+x mcsdetect.sif
+```
+Next, run
+```
+singularity exec mcsdetect.sif [todo]
+```
