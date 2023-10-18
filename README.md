@@ -415,6 +415,6 @@ export IDIR="/set/this/to/the/output/of/mcsdetect"
 export ODIR="/set/this/to/where/you/want/output/saved"
 
 # Run
-singularity exec mcsdetect.sif julia --project=$LSRC --sysimage=$LSRC/sys_img.so $LSRC/scripts/ercontacts.jl  --inpath $IDIR --outpath  $ODIR
+singularity exec mcsdetect.sif julia --project=$LSRC --sysimage=$LSRC/sys_img.so $LSRC/scripts/run_cube_sampling_on_dataset.jl  --inpath $IDIR --outpath  $ODIR
 
 ```
