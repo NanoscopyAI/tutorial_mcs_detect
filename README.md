@@ -7,6 +7,7 @@ See https://github.com/bencardoen/SubPrecisionContactDetection.jl/ for documenta
 2. [Processing a single cell](#single)
 3. [Troubleshooting](#trouble)
 4. [Postprocessing batch data](#post)
+5. [Postprocessing sampling data (coverage, nr contacts)[#post2]
 
 <a name="batch"></a>
 ## What this will do for you:
@@ -399,4 +400,21 @@ These files will be generated for you
 contacts_aggregated.csv             # Contacts aggregated per cell, so 1 row = 1 cell, use this for e.g. mean height, Q95 Volume
 contacts_filtered_novesicles.csv    # All contacts, without vesicles
 contacts_unfiltered.csv             # All contacts, no filtering
+```
+
+<a name="post2"></a>
+### Postprocessing sampling & coverage data
+To compute contact coverage, a separate script is available. 
+
+First, acquire an interactive node as you did in the [steps above](https://github.com/NanoscopyAI/tutorial_mcs_detect/blob/main/README.md#step-4-validate-your-dataset).
+Then, with the `mcsdetect.sif` image in place:
+```bash
+# Configure variables
+export LSRC="/opt/SubPrecisionContactDetection.jl"
+export IDIR="/set/this/to/the/output/of/mcsdetect"
+export ODIR="/set/this/to/where/you/want/output/saved"
+
+# Run
+singularity exec mcsdetect.sif julia --project=$LSRC --sysimage=$LSRC/sys_img.so $LSRC/scripts/ercontacts.jl  --inpath $IDIR --outpath  $ODIR
+
 ```
