@@ -46,7 +46,7 @@ Copy your data to the cluster using Globus.
 ### Step 1
 Log in to cluster, where you'd replace `$USER` with your userid.
 ```bash
-ssh $USER@computecanada.ca
+ssh $USER@cedar.computecanada.ca
 ```
 You'll see something like this
 ```
