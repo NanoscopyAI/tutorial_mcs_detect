@@ -7,7 +7,7 @@ See https://github.com/bencardoen/SubPrecisionContactDetection.jl/ for documenta
 2. [Processing a single cell](#single)
 3. [Troubleshooting](#trouble)
 4. [Postprocessing batch data](#post)
-5. [Postprocessing sampling data (coverage, nr contacts)[#post2]
+5. [Postprocessing sampling data (coverage, nr contacts)](#post2)
 
 <a name="batch"></a>
 ## What this will do for you:
