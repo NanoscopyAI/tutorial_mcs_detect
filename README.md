@@ -26,12 +26,13 @@ See https://github.com/bencardoen/SubPrecisionContactDetection.jl/ for documenta
 ## Dataset organization:
 Your data **has to be organized** in the following way
 ```
-- replicate      (1, 2, ...), directory
-  - condition    (COS7, RMgp78), directory
-     - Series001 (cellnr), directory
-        ...0.tif  #Mitochannel
-        ...1.tif  #ER Channel
-     - Series002 etc
+- experiment       
+  - replicate      (1, 2, ...), directory
+    - condition    (COS7, RMgp78), directory
+       - Series001 (cellnr), directory
+          ...0.tif  #Mitochannel
+          ...1.tif  #ER Channel
+       - Series002 etc
 ```
 Do not:
 - store other files 
