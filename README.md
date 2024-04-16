@@ -385,7 +385,10 @@ export SINGULARITY_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
 export JULIA_NUM_THREADS="$SLURM_CPUS_PER_TASK"
 singularity exec mcsdetect.sif python3 /opt/SubPrecisionContactDetection.jl/scripts/csvcuration.py --inputdirectory $MCSDETECTOUTPUT --outputdirectory $CSVOUTPUT
 ```
-That's it. 
+That's it.
+
+If you have an alpha value different than 0.05, you can change the argument `csvcuration.py --alpha 0.01 --inputdirectory ...`, as an example. Filtering different intensities can be done in the same way, see the [script](https://github.com/bencardoen/SubPrecisionContactDetection.jl/blob/main/scripts/csvcuration.py#L279) for documentation.
+
 Assuming you pointed this to the location of MCSDETECT output, of the form
 ```
 experiment
