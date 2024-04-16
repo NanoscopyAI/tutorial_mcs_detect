@@ -422,3 +422,7 @@ export ODIR="/set/this/to/where/you/want/output/saved"
 singularity exec mcsdetect.sif julia --project=$LSRC --sysimage=$LSRC/sys_img.so $LSRC/scripts/run_cube_sampling_on_dataset.jl  --inpath $IDIR --outpath  $ODIR
 
 ```
+
+### FAQ
+#### I get a warning about `SINGULARITY BINDPATH`
+Singularity is being replaced by AppTainer, but to [support both systems](https://github.com/NanoscopyAI/tutorial_mcs_detect/blob/b539a07011db7e37dd3be2c619e7a3362899d060/submitdata.sh#L51), we define variables for both. In systems where AppTainer is adopted, this can then lead to warnings.
