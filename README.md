@@ -414,6 +414,9 @@ First, acquire an interactive node as you did in the [steps above](https://githu
 Then, with the `mcsdetect.sif` image in place:
 ```bash
 # Configure variables
+# These two lines ensure singularity can read your data
+export APPTAINER_BINDBATH="/scratch/$USER,$SLURM_TMPDIR"
+export SINGULARITY_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
 export LSRC="/opt/SubPrecisionContactDetection.jl"
 export IDIR="/set/this/to/the/output/of/mcsdetect"
 export ODIR="/set/this/to/where/you/want/output/saved"
