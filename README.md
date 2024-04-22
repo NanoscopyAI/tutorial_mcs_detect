@@ -295,7 +295,7 @@ Your prompt should look like `user@cdr123` where 123 varies, not `user@cedar1` (
 
 For reference, the setup should look like 
 ```bash
-module load apptainer/1.1
+module load StdEnv/2020 apptainer/1.1.3
 export SINGULARITY_CACHEDIR="/scratch/$USER"
 export APPTAINER_CACHEDIR="/scratch/$USER"
 export APPTAINER_BINDBATH="/scratch/$USER,$SLURM_TMPDIR"
