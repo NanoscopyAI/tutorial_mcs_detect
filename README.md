@@ -377,7 +377,7 @@ export CSVOUTPUT="..." # Where you want the CSV's saved (use directories in /scr
 Next, run:
 ```bash
 echo "Configuring singularity"
-module load apptainer/1.1
+module load StdEnv/2020 apptainer/1.1.3
 export SINGULARITY_CACHEDIR="/scratch/$USER"
 export APPTAINER_CACHEDIR="/scratch/$USER"
 export APPTAINER_BINDBATH="/scratch/$USER,$SLURM_TMPDIR"
