@@ -415,6 +415,7 @@ Then, with the `mcsdetect.sif` image in place:
 ```bash
 # Configure variables
 # These two lines ensure singularity can read your data
+module load StdEnv/2020 apptainer/1.1.3
 export APPTAINER_BINDBATH="/scratch/$USER,$SLURM_TMPDIR"
 export SINGULARITY_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
 export LSRC="/opt/SubPrecisionContactDetection.jl"
@@ -432,6 +433,7 @@ Next, you can run an aggregation script to summarize this (potentially huge) csv
 ```bash
 # Configure variables
 # These two lines ensure singularity can read your data
+module load StdEnv/2020 apptainer/1.1.3
 export APPTAINER_BINDBATH="/scratch/$USER,$SLURM_TMPDIR"
 export SINGULARITY_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
 export LSRC="/opt/SubPrecisionContactDetection.jl"
@@ -439,7 +441,7 @@ export IDIR="/set/this/to/the/where/all.csv_is_saved"
 export ODIR="/set/this/to/where/you/want/summary/output/saved"
 
 # Run
-singularity exec mcsdetect.sif python3 /opt/SubPrecisionContactDetection.jl/scripts/csvcuration.py  --inputdirectory $IDIR --outputdirectory $ODIR
+singularity exec mcsdetect.sif python3 /opt/SubPrecisionContactDetection.jl/scripts/coverage.py  --inputdirectory $IDIR --outputdirectory $ODIR
 ```
 This will print summary output and save a file `coverage_aggregated.csv`. 
 The columns `Coverage % mito by contacts, mean per cell` and `ncontacts mean` are the columns you'll be most interested in.
@@ -448,3 +450,9 @@ They report the coverage of contacts on mitochondria (minus MDVs), and the numbe
 ### FAQ
 #### I get a warning about `SINGULARITY BINDPATH`
 Singularity is being replaced by AppTainer, but to [support both systems](https://github.com/NanoscopyAI/tutorial_mcs_detect/blob/b539a07011db7e37dd3be2c619e7a3362899d060/submitdata.sh#L51), we define variables for both. In systems where AppTainer is adopted, this can then lead to warnings.
+
+#### I get a warning/error that Singularity is no longer supported
+Run (on WestGrid systems)
+```bash
+module load StdEnv/2020 apptainer/1.1.3
+```
