@@ -425,7 +425,26 @@ export ODIR="/set/this/to/where/you/want/output/saved"
 singularity exec mcsdetect.sif julia --project=$LSRC --sysimage=$LSRC/sys_img.so $LSRC/scripts/run_cube_sampling_on_dataset.jl  --inpath $IDIR --outpath  $ODIR
 
 ```
+This will take all the output of MCS-Detect, and compute coverage statistics. 
+The result is a file `all.csv', and the corresponding tif files if you need them.
+Next, you can run an aggregation script to summarize this (potentially huge) csv file and compute simplified statistics.
 
+```bash
+# Configure variables
+# These two lines ensure singularity can read your data
+export APPTAINER_BINDBATH="/scratch/$USER,$SLURM_TMPDIR"
+export SINGULARITY_BINDPATH="/scratch/$USER,$SLURM_TMPDIR"
+export LSRC="/opt/SubPrecisionContactDetection.jl"
+export IDIR="/set/this/to/the/where/all.csv_is_saved"
+export ODIR="/set/this/to/where/you/want/summary/output/saved"
+
+# Run
+singularity exec mcsdetect.sif python3 /opt/SubPrecisionContactDetection.jl/scripts/csvcuration.py  --inputdirectory $IDIR --outputdirectory $ODIR
+```
+This will print summary output and save a file `coverage_aggregated.csv`. 
+The columns `Coverage % mito by contacts, mean per cell` and `ncontacts mean` are the columns you'll be most interested in.
+
+They report the coverage of contacts on mitochondria (minus MDVs), and the number of contacts per sliding window of 5x5x5 voxels.
 ### FAQ
 #### I get a warning about `SINGULARITY BINDPATH`
 Singularity is being replaced by AppTainer, but to [support both systems](https://github.com/NanoscopyAI/tutorial_mcs_detect/blob/b539a07011db7e37dd3be2c619e7a3362899d060/submitdata.sh#L51), we define variables for both. In systems where AppTainer is adopted, this can then lead to warnings.
