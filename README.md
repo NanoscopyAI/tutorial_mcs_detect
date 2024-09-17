@@ -322,6 +322,17 @@ fi
 wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/sweep.toml -O recipe.toml
 ```
 
+This recipe will look like the below
+```toml
+[global]
+act_on_success=true
+inputdirectory = "testdir"
+[any]
+all=true
+conditions = ["is_dir"]
+actions=[["filter_mcsdetect", 1, 0.5, 2, "*[0-2].tif"]]
+```
+
 The recipe looks for files ending with 0, 1, or 2.tif. 
 If that does not match your data, change it, for example
 ```toml
@@ -330,9 +341,25 @@ If that does not match your data, change it, for example
 ```
 Use `nano` or `vi` as text editors if needed.
 
-The recipe will run a parameter sweep from z=1 to z=2 at increments of 0.5, you can modify these as needed.
+The recipe will run a parameter sweep from `z=1` to `z=2` at increments of `0.5`, you can modify these as needed.
 At the end it will, for each input tif file, generate a CSV file named 'stats_{original_file_name}.csv' with statistics on the size and intensity of objects for each filter value.
 The filename and z value used are columns in this csv.
+
+For example, say you want to test on channels 1 and 2 only, and z=0.5 to 3.5 at .1 increments, you would modify it like so
+```toml
+[global]
+act_on_success=true
+inputdirectory = "testdir"
+[any]
+all=true
+conditions = ["is_dir"]
+actions=[["filter_mcsdetect", 0.5, 0.1, 3.5, "*[1-2].tif"]]
+```
+
+**Output**
+The output will be, per tif file it finds
+- per z value a mask (binary) and masked (original * mask) tif file, with `mask_zvalue_original_name.tif`
+- for all z values a CSV that computes the objects and their intensity after filtering
 
 **Change the inputdirectory**
 The recipe will have `testdir` as inputdirectory, change it to point to your directory of choice. 
