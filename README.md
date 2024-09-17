@@ -319,7 +319,7 @@ fi
 
 #### Download the recipe 
 ```bash
-wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/ermito.toml -O recipe.toml
+wget https://raw.githubusercontent.com/bencardoen/DataCurator.jl/main/example_recipes/sweep.toml -O recipe.toml
 ```
 
 The recipe looks for files ending with 0, 1, or 2.tif. 
@@ -329,6 +329,10 @@ If that does not match your data, change it, for example
 ["*[1-2].tif"] # Only channels 1 and 2
 ```
 Use `nano` or `vi` as text editors if needed.
+
+The recipe will run a parameter sweep from z=1 to z=2 at increments of 0.5, you can modify these as needed.
+At the end it will, for each input tif file, generate a CSV file named 'stats_{original_file_name}.csv' with statistics on the size and intensity of objects for each filter value.
+The filename and z value used are columns in this csv.
 
 **Change the inputdirectory**
 The recipe will have `testdir` as inputdirectory, change it to point to your directory of choice. 
