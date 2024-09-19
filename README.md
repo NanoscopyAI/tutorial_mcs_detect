@@ -1,6 +1,7 @@
 # Walkthrough
 The below steps allow you to compute contacts in 3D STED between subcellular organelles.
-See https://github.com/bencardoen/SubPrecisionContactDetection.jl/ for documentation on the project.
+See the parent [repository](https://github.com/bencardoen/SubPrecisionContactDetection.jl/) for documentation on the project.
+E.g 2D mode, is documented [here](https://github.com/bencardoen/SubPrecisionContactDetection.jl/tree/main#2d-mode)
 
 ## Table of contents
 1. [Batch processing on Compute Canada (1-1000s of cells)](#batch)
