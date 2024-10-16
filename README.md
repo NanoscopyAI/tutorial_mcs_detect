@@ -9,6 +9,7 @@ E.g 2D mode, is documented [here](https://github.com/bencardoen/SubPrecisionCont
 3. [Troubleshooting](#trouble)
 4. [Postprocessing batch data](#post)
 5. [Postprocessing sampling data (coverage, nr contacts)](#post2)
+6. [Running MCS Detect on LSI workstations](#LSI)
 
 <a name="batch"></a>
 ## What this will do for you:
@@ -487,4 +488,35 @@ Singularity is being replaced by AppTainer, but to [support both systems](https:
 Run (on WestGrid systems)
 ```bash
 module load StdEnv/2020 apptainer/1.1.3
+```
+
+
+<a name="LSI"></a>
+### Running MCS Detect on the UBC LSI workstations
+MCSDetect has been preinstalled on the LSI workstations. 
+To run:
+- Open VSCode
+- File --> New Window
+- Open Folder
+- Navigate to C:\Users\Nabi Workstation\repositories\SubPrecisionContactDetection.jl
+This will give a view similar to:
+ 
+![image](https://github.com/user-attachments/assets/d9ddc488-d61f-429f-836b-be124890b63b)
+
+- Open a New Terminal: Terminal -> New Terminal
+
+![image](https://github.com/user-attachments/assets/f78c4f78-3e1d-40ad-9d6c-9d0db303f4b6)
+
+Now you can work with the code as per the documentation. We will run through a few examples:
+
+#### Testing the background filter
+Let's say you have some tif files in `mydir`, and want to test the segmentation in steps of 0.1 from 1.0 to 3.0:
+```julia
+julia --project=. scripts\segment.jl --inpath mydir -z 1.0 -s 0.1 -Z 3.0
+```
+
+#### Running the contact detection
+Let's say you have files in `idir` , ending with 0 and 1.tif:
+```julia
+julia --project=. scripts\ercontacts.jl  --inpath idir -r "*[0,1].tif" -w 2 --deconvolved --outpath odir --alpha 0.05
 ```
