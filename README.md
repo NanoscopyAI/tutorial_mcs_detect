@@ -520,3 +520,15 @@ Let's say you have files in `idir` , ending with 0 and 1.tif:
 ```julia
 julia --project=. scripts\ercontacts.jl  --inpath idir -r "*[0,1].tif" -w 2 --deconvolved --outpath odir --alpha 0.05
 ```
+
+### Interactive with Jupyter notebook
+Start julia
+```julia
+julia 
+```
+Then
+```julia
+using IJulia
+notebook()
+```
+This will open a web browser with Jupyter Notebook, where you can interactively run snippets of code, e.g. from this [script](https://github.com/bencardoen/SubPrecisionContactDetection.jl/blob/main/interactivedemos/demo.jl).
